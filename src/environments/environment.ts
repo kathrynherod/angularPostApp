@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4f19e07... google login enabled
   firebase: {
     apiKey: 'AIzaSyAXzHzF_UhXqpdE1oV1qTrZsUekwqXJ_E8',
     authDomain: 'angulargrocery-cf3d9.firebaseapp.com',
