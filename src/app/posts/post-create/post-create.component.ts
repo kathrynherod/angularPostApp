@@ -17,9 +17,11 @@ export class PostCreateComponent {
     //if the form is invalid/blank, dont actually submit it
     if (form.invalid) return;
     const post: Post = {
+      id: Math.random(),
       title: form.value.title,
       content: form.value.content
     };
     this.postsService.addPost(form.value.title, form.value.content);
+    form.resetForm();
   }
 }
