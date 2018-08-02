@@ -1,9 +1,20 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const Post = require('./models/post');
+const mongoose = require('mongoose');
 
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//connect to the db
+mongoose
+  .connect(
+    'mongodb+srv://kat:p0deqCXTFuFZT229@cluster0-fwu3z.mongodb.net/meanStackDB?retryWrites=true',
+    { useNewUrlParser: true }
+  )
+  .then(console.log('connected to database'))
+  .catch(err => console.log(err));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,33 +30,29 @@ app.use((req, res, next) => {
 });
 
 app.post('/api/posts', (req, res, next) => {
-  const post = req.body;
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+  post.save();
   console.log(post);
   res.status(201).json({
     message: 'Post received successfully'
   });
 });
 
-app.use('/api/posts', (req, res, next) => {
-  const posts = [
-    {
-      id: 123901,
-      title: 'first title',
-      content: 'coming from server'
-    },
-    {
-      id: 2342342,
-      title: 'second title',
-      content: 'coming from server'
-    },
-    {
-      id: 234234123901,
-      title: 'third title',
-      content: 'coming from server'
-    }
-  ];
-  res
-    .status(200)
-    .json({ message: 'posts returned successfully', posts: posts });
+app.get('/api/posts', (req, res, next) => {
+  Post.find().then(documents => {
+    res
+      .status(200)
+      .json({ message: 'posts returned successfully', posts: documents });
+  });
+});
+
+app.delete('/api/posts/:id', (req, res, next) => {
+  Post.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(req.params);
+    res.status(200).json({ message: 'posts deleted' });
+  });
 });
 module.exports = app;
