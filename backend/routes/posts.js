@@ -22,6 +22,13 @@ router.get('', (req, res, next) => {
       .json({ message: 'posts returned successfully', posts: documents });
   });
 });
+router.get('/:id', (req, res, next) => {
+  Post.findById(req.params.id).then(post => {
+    post
+      ? res.status(200).json(post)
+      : res.status(404).json({ message: 'post not found' });
+  });
+});
 
 router.put('/:id', (req, res, next) => {
   const post = new Post({

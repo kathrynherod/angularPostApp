@@ -14,6 +14,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 export class PostCreateComponent implements OnInit {
   enteredTitle;
   enteredContent;
+  isLoading = false;
 
   public post: Post;
 
@@ -29,8 +30,16 @@ export class PostCreateComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
+        this.isLoading = true;
         this.postId = paramMap.get('postId');
-        this.post = this.postsService.getPostId(this.postId);
+        this.postsService.getPost(this.postId).subscribe(postData => {
+          this.post = {
+            id: postData._id,
+            title: postData.title,
+            content: postData.content
+          };
+          this.isLoading = false;
+        });
       } else {
         this.mode = 'create';
         this.postId = null;
@@ -41,7 +50,7 @@ export class PostCreateComponent implements OnInit {
   onSavePost(form: NgForm) {
     //if the form is invalid/blank, dont actually submit it
     if (form.invalid) return;
-
+    this.isLoading = true;
     this.mode === 'create'
       ? this.postsService.addPost(form.value.title, form.value.content)
       : this.postsService.updatePost(
