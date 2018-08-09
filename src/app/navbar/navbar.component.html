@@ -1,16 +1,25 @@
 <mat-toolbar>
+  <div class="brand">
+    <img src="../../assets/shopping_cart_red.png" />
+    <div class="brand-name" routerLink="/">Awesome Sauce Groceries</div>
+  </div>
 
-  <h4 class="brand" routerLink="/"> My Awesome Grocery Store</h4>
+  <!-- <mat-form-field class="example-full-width">
+    <input matInput placeholder="Search for Products">
+  </mat-form-field> -->
   <div class="button-row">
     <button mat-raised-button color="primary" routerLink="shopping-cart">
       My Shopping Cart
     </button>
     <button mat-raised-button color="primary" [matMenuTriggerFor]="appMenu">
-      User settings
+      Username
     </button>
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item>Settings</button>
-      <button mat-menu-item>Help</button>
+      <button mat-menu-item routerLink="my/orders">My Orders</button>
+      <button mat-menu-item routerLink="admin/orders">Manage Orders</button>
+      <button mat-menu-item routerLink="admin/products">Manage Products</button>
+      <button mat-menu-item routerLink="">Logout</button>
     </mat-menu>
   </div>
+
 </mat-toolbar>

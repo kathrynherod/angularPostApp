@@ -7,6 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatInputModule } from '@angular/material/input';
 
 //Components//
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { LoginComponent } from './login/login.component';
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'my/orders', component: MyOrdersComponent },
       { path: 'order-success', component: OrderSuccessComponent },
       { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminOrdersComponent },
@@ -51,7 +53,8 @@ import { LoginComponent } from './login/login.component';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
