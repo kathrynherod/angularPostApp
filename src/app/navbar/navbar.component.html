@@ -1,25 +1,16 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">My Awesome Grocery Store</a>
+<mat-toolbar>
 
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Shopping Cart
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" (click)="toggleDropdown()" aria-expanded="true">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" *ngIf="isExpanded">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-
-    </ul>
+  <h4 class="brand" routerLink="/"> My Awesome Grocery Store</h4>
+  <div class="button-row">
+    <button mat-raised-button color="primary" routerLink="shopping-cart">
+      My Shopping Cart
+    </button>
+    <button mat-raised-button color="primary" [matMenuTriggerFor]="appMenu">
+      User settings
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item>Settings</button>
+      <button mat-menu-item>Help</button>
+    </mat-menu>
   </div>
-</nav>
+</mat-toolbar>
