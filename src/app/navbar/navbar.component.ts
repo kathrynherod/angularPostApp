@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
-  constructor() {}
+export class NavbarComponent {
+  user$: Observable<firebase.User>;
 
-  ngOnInit() {}
-  isExpanded = false;
-  toggleDropdown() {
-    this.isExpanded = !this.isExpanded;
-    console.log(this.isExpanded);
+  constructor(private afAuth: AngularFireAuth) {
+    this.user$ = afAuth.authState;
+  }
+
+  logout() {
+    this.afAuth.auth.signOut();
   }
 }

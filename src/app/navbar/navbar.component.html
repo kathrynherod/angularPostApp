@@ -3,26 +3,23 @@
     <img src="../../assets/shopping_cart_red.png" />
     <div class="brand-name" routerLink="/">Awesome Sauce Groceries</div>
   </div>
-
-  <!-- <mat-form-field class="example-full-width">
-    <input matInput placeholder="Search for Products">
-  </mat-form-field> -->
   <div class="button-row">
     <button mat-raised-button color="primary" routerLink="shopping-cart">
       My Shopping Cart
     </button>
-    <button mat-raised-button color="primary" routerLink="login">
-      Login
-    </button>
-    <button mat-raised-button color="primary" [matMenuTriggerFor]="appMenu">
-      Username
+    <ng-template #notUser>
+      <button mat-raised-button color="primary" routerLink="login">
+        Login
+      </button>
+    </ng-template>
+    <button *ngIf="user$ | async as user; else notUser" mat-raised-button color="primary" [matMenuTriggerFor]="appMenu">
+      {{user?.displayName}}
     </button>
     <mat-menu #appMenu="matMenu">
       <button mat-menu-item routerLink="my/orders">My Orders</button>
       <button mat-menu-item routerLink="admin/orders">Manage Orders</button>
       <button mat-menu-item routerLink="admin/products">Manage Products</button>
-      <button mat-menu-item routerLink="">Logout</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </div>
-
 </mat-toolbar>
