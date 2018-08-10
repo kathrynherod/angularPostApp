@@ -52,7 +52,7 @@ import { AuthService } from 'src/app/__services/auth.service';
       { path: 'checkout', component: CheckoutComponent },
       { path: 'my/orders', component: MyOrdersComponent },
       { path: 'order-success', component: OrderSuccessComponent },
-      { path: 'login', component: LoginComponent },
+      // { path: 'login', component: LoginComponent },
       { path: 'admin/products', component: AdminOrdersComponent },
       { path: 'admin/orders', component: AdminOrdersComponent }
     ]),

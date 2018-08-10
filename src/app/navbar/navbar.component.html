@@ -8,9 +8,7 @@
       My Shopping Cart
     </button>
     <ng-template #notUser>
-      <button mat-raised-button color="primary" routerLink="login">
-        Login
-      </button>
+      <app-login></app-login>
     </ng-template>
     <button *ngIf="auth.user$ | async as user; else notUser" mat-raised-button color="primary" [matMenuTriggerFor]="appMenu">
       {{user?.displayName}}
